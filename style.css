@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Minecraft";
+   src: url("fonts/minecraft.ttf") format("truetype");
+}
+
+:root {
+	--global-scale: 3;
+	--default-shadow: #3F3F3F;
+	--default-color: #FFFFFF
+}
+
+body {
+	--local-scale: calc(var(--scale, 1) * var(--global-scale));
+    margin: calc(var(--local-scale) * 4px) calc(var(--local-scale) * 4px);
+	background-color: black;
+}
+
+.grid {
+	display: grid;
+}
+
+div.fgtop,
+div.fgbottom,
+
+.dirtbg {
+    margin: 0;
+	color: #fff;
+	--local-scale: calc(var(--scale, 1) * var(--global-scale));
+	background-image: url("assets/images/dirtbg.svg");
+	background-size: calc(var(--local-scale) * 32px);
+	background-color: #404040;
+	background-blend-mode: multiply;
+}
+div.fgtop,
+div.fgbottom {
+	width: 100%;
+	z-index:10;
+	height: calc(var(--local-scale) * 32px);
+	box-shadow: 0px 0px calc(var(--local-scale) * 4px) calc(var(--local-scale) * 2px) #000000;
+}
+
+ul {
+  list-style-type: square;
+}
+
+h1,
+h2,
+a,
+t {
+	outline:none;
+	--local-scale: calc(var(--scale, 1) * var(--global-scale));
+	--local-color: var(--text-color, var(--default-color));
+	--local-shadow: var(--shadow-color, var(--default-shadow));
+	font-weight: 100;
+	font-family: "Minecraft";
+	word-spacing: calc(2px * var(--local-scale));
+	line-height: calc(9px * var(--local-scale));
+	font-size: calc(8px * var(--local-scale));
+	text-shadow: calc(var(--local-scale)* 1px) calc(var(--local-scale) * 1px) 0 var(--local-shadow);
+	color: var(--local-color);
+}
+
+h1 { --scale: 2;}
+
+h1,
+h2 {
+	margin: calc(8px * var(--local-scale));
+    font-weight: 100;
+}
+
+/* Text colors */
+
+a.res { --shadow-color: #153F15; --text-color: #55FF55; }
+a.res:hover, a.res:focus { --shadow-color: #002A00; --text-color: #00AA00; }
+a { --shadow-color: #15153F; --text-color: #5555FF; }
+a:hover, a:focus { --shadow-color: #00002A; --text-color: #0000AA; }
+h1, h2 { --shadow-color: #3F3F3F; --text-color: #FFFFFF; }
+
+/* --- */
+}
