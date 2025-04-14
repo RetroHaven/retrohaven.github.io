@@ -1,2 +1,2 @@
-# retrohaven.github.io
-the website for this place :P
+# GOTO: retrohaven.org
+what are you doing here silly go to retrohaven.org :P
