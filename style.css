@@ -68,13 +68,52 @@ h2 {
     font-weight: 100;
 }
 
-/* Text colors */
+.navbar {
+    font-family: "Minecraft";
+    padding: 10px 20px;
+    display: flex;
+    gap: 40px;
+}
 
-a.res { --shadow-color: #153F15; --text-color: #55FF55; }
-a.res:hover, a.res:focus { --shadow-color: #002A00; --text-color: #00AA00; }
-a { --shadow-color: #15153F; --text-color: #5555FF; }
-a:hover, a:focus { --shadow-color: #00002A; --text-color: #0000AA; }
-h1, h2 { --shadow-color: #3F3F3F; --text-color: #FFFFFF; }
+.navbar a {
+    text-decoration: none;
+    color: #fff; /* Default text color (white) */
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    text-shadow: 
+        -1px -1px 0 #000000,  
+         1px -1px 0 #000000,
+        -1px  1px 0 #000000,
+         1px  1px 0 #000000;
+}
+
+.navbar a:hover, .navbar a:focus {
+    color: #4E9144; /* New hover color (green) */
+    text-shadow: none;
+}
+
+/* Your existing text color scheme (unchanged) */
+a.res { 
+    --shadow-color: #153F15; 
+    --text-color: #55FF55; 
+}
+a.res:hover, a.res:focus { 
+    --shadow-color: #002A00; 
+    --text-color: #00AA00; 
+}
+a { 
+    --shadow-color: #15153F; 
+    --text-color: #5555FF; 
+}
+a:hover, a:focus { 
+    --shadow-color: #00002A; 
+    --text-color: #0000AA; 
+}
+h1, h2 { 
+    --shadow-color: #3F3F3F; 
+    --text-color: #FFFFFF; 
+}
 
 /* --- */
 }
