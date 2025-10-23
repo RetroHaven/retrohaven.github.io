@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Minecraft";
-   src: url("fonts/minecraft.ttf") format("truetype");
+   src: url("assets/fonts/minecraft.ttf") format("truetype");
 }
 
 :root {
@@ -9,10 +9,27 @@
 	--default-color: #FFFFFF
 }
 
+/* Hide scrollbar */
+html {
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Edge */
+}
+
 body {
 	--local-scale: calc(var(--scale, 1) * var(--global-scale));
     margin: calc(var(--local-scale) * 4px) calc(var(--local-scale) * 4px);
 	background-color: black;
+	overflow-x: hidden;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Edge */
 }
 
 .grid {
@@ -89,31 +106,651 @@ h2 {
 }
 
 .navbar a:hover, .navbar a:focus {
-    color: #4E9144; /* New hover color (green) */
+    background: linear-gradient(135deg, #59c7ff 0%, #4E9144 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-shadow: none;
 }
 
-/* Your existing text color scheme (unchanged) */
-a.res { 
-    --shadow-color: #153F15; 
-    --text-color: #55FF55; 
+
+a.res {
+    --shadow-color: #2A5C2A;
+    --text-color: #4E9144;
 }
-a.res:hover, a.res:focus { 
-    --shadow-color: #002A00; 
-    --text-color: #00AA00; 
+a.res:hover, a.res:focus {
+    --shadow-color: #1F4421;
+    --text-color: #3A6D33;
 }
-a { 
-    --shadow-color: #15153F; 
-    --text-color: #5555FF; 
+a {
+    --shadow-color: #2C6280;
+    --text-color: #59c7ff;
 }
-a:hover, a:focus { 
-    --shadow-color: #00002A; 
-    --text-color: #0000AA; 
+a:hover, a:focus {
+    --shadow-color: #1F4966;
+    --text-color: #3AA0CC;
 }
 h1, h2 { 
     --shadow-color: #3F3F3F; 
     --text-color: #FFFFFF; 
 }
 
-/* --- */
+.center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.center-text {
+    text-align: center;
+}
+
+.copyright {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(6px * var(--local-scale));
+    text-align: center;
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A2A2A;
+    margin-top: calc(32px * var(--local-scale));
+    padding-bottom: calc(16px * var(--local-scale));
+}
+
+/* Stats Page Styles */
+.stats-container {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    max-width: calc(800px * var(--local-scale));
+    margin: calc(16px * var(--local-scale)) auto;
+    padding: 0 calc(16px * var(--local-scale));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(24px * var(--local-scale));
+}
+
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stats-section {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    background-color: rgba(0, 0, 0, 0.5);
+    border: calc(2px * var(--local-scale)) solid #555555;
+    padding: calc(12px * var(--local-scale));
+    border-radius: calc(4px * var(--local-scale));
+}
+
+.section-title {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(10px * var(--local-scale));
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    margin: 0 0 calc(12px * var(--local-scale)) 0;
+    text-align: center;
+}
+
+.player-list, .leaderboard {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    min-height: calc(100px * var(--local-scale));
+}
+
+.online-list, .leaderboard-list {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: flex;
+    flex-direction: column;
+    gap: calc(6px * var(--local-scale));
+}
+
+.online-player {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #4E9144;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A5C2A;
+    padding: calc(6px * var(--local-scale));
+    background-color: rgba(78, 145, 68, 0.1);
+    border-left: calc(3px * var(--local-scale)) solid #4E9144;
+}
+
+.leaderboard-item {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    padding: calc(8px * var(--local-scale));
+    background-color: rgba(255, 255, 255, 0.05);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: calc(12px * var(--local-scale));
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.leaderboard-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-item .rank {
+    font-weight: bold;
+    color: #FFFFFF;
+    min-width: calc(32px * var(--local-scale));
+}
+
+.leaderboard-item.rank-1 {
+    background-color: rgba(255, 215, 0, 0.2);
+    border-left: calc(4px * var(--local-scale)) solid #FFD700;
+}
+
+.leaderboard-item.rank-1 .rank {
+    color: #FFD700;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #AA8800;
+}
+
+.leaderboard-item.rank-2 {
+    background-color: rgba(192, 192, 192, 0.2);
+    border-left: calc(4px * var(--local-scale)) solid #C0C0C0;
+}
+
+.leaderboard-item.rank-2 .rank {
+    color: #C0C0C0;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #808080;
+}
+
+.leaderboard-item.rank-3 {
+    background-color: rgba(205, 127, 50, 0.2);
+    border-left: calc(4px * var(--local-scale)) solid #CD7F32;
+}
+
+.leaderboard-item.rank-3 .rank {
+    color: #CD7F32;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #8B4513;
+}
+
+.leaderboard-item .player-name {
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+}
+
+.leaderboard-item .playtime {
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    font-weight: bold;
+}
+
+.loading, .empty-message, .error-message {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    text-align: center;
+    padding: calc(16px * var(--local-scale));
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+}
+
+.error-message {
+    color: #FF5555;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F1515;
+}
+
+/* Player Search Styles */
+.player-search-container {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    max-width: calc(600px * var(--local-scale));
+    margin: calc(20px * var(--local-scale)) auto;
+    text-align: center;
+}
+
+.search-form {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: flex;
+    gap: calc(8px * var(--local-scale));
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    padding: calc(8px * var(--local-scale)) calc(12px * var(--local-scale));
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    border: calc(2px * var(--local-scale)) solid #555555;
+    outline: none;
+    flex: 1;
+    max-width: calc(400px * var(--local-scale));
+}
+
+.search-input::placeholder {
+    color: #888888;
+}
+
+.search-input:focus {
+    border-color: #4E9144;
+    box-shadow: 0 0 calc(8px * var(--local-scale)) rgba(78, 145, 68, 0.3);
+}
+
+.search-button {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    padding: calc(8px * var(--local-scale)) calc(16px * var(--local-scale));
+    background-color: #4E9144;
+    color: #FFFFFF;
+    border: calc(2px * var(--local-scale)) solid #4E9144;
+    cursor: pointer;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A5C2A;
+    transition: all 0.2s ease;
+}
+
+.search-button:hover {
+    background-color: #3A6D33;
+    border-color: #3A6D33;
+}
+
+.search-button:active {
+    background-color: #2D5427;
+}
+
+/* Player Card Styles */
+.player-card {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    max-width: calc(700px * var(--local-scale));
+    margin: calc(24px * var(--local-scale)) auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: calc(2px * var(--local-scale)) solid #555555;
+    padding: calc(24px * var(--local-scale));
+    border-radius: calc(4px * var(--local-scale));
+}
+
+.player-header {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: flex;
+    align-items: center;
+    gap: calc(20px * var(--local-scale));
+    margin-bottom: calc(24px * var(--local-scale));
+    padding-bottom: calc(16px * var(--local-scale));
+    border-bottom: calc(2px * var(--local-scale)) solid #555555;
+}
+
+.player-head {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    width: calc(64px * var(--local-scale));
+    height: calc(64px * var(--local-scale));
+    image-rendering: pixelated;
+    border: calc(2px * var(--local-scale)) solid #555555;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-name-display {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(12px * var(--local-scale));
+    color: #59c7ff;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2C6280;
+    margin: 0 0 calc(8px * var(--local-scale)) 0;
+}
+
+.player-uuid {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(6px * var(--local-scale));
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    margin: 0;
+}
+
+.player-stats-grid {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(16px * var(--local-scale));
+}
+
+@media (max-width: 600px) {
+    .player-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat-item {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: calc(12px * var(--local-scale));
+    border-left: calc(3px * var(--local-scale)) solid #FF5555;
+    display: flex;
+    flex-direction: column;
+    gap: calc(6px * var(--local-scale));
+}
+
+.stat-label {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(7px * var(--local-scale));
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+}
+
+.status-online {
+    color: #4E9144 !important;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A5C2A !important;
+}
+
+.status-offline {
+    color: #FF5555 !important;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F1515 !important;
+}
+
+.ban-status-text {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(6px * var(--local-scale));
+    margin: 0;
+}
+
+.ban-status-text.status-banned {
+    color: #FF5555;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F1515;
+}
+
+.ban-status-text.status-expired {
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+}
+
+.error-box {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    background-color: rgba(255, 85, 85, 0.1);
+    border: calc(2px * var(--local-scale)) solid #FF5555;
+    padding: calc(16px * var(--local-scale));
+    margin-top: calc(16px * var(--local-scale));
+    text-align: center;
+}
+
+.error-box p {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #FF5555;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F1515;
+    margin: 0;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-container {
+    margin: calc(16px * var(--local-scale)) auto;
+    width: fit-content;
+}
+
+.dropdown-button {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    padding: calc(8px * var(--local-scale)) calc(16px * var(--local-scale));
+    background-color: transparent;
+    color: #59c7ff;
+    border: calc(2px * var(--local-scale)) solid #59c7ff;
+    cursor: pointer;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2C6280;
+    transition: all 0.2s ease;
+    min-width: calc(200px * var(--local-scale));
+}
+
+.dropdown-button:hover {
+    color: #3AA0CC;
+    border-color: #3AA0CC;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #1F4966;
+}
+
+.dropdown-button:active {
+    color: #3AA0CC;
+    border-color: #3AA0CC;
+    background-color: rgba(89, 199, 255, 0.1);
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: calc(4px * var(--local-scale));
+    background-color: rgba(0, 0, 0, 0.8);
+    border: calc(2px * var(--local-scale)) solid #555555;
+    padding: calc(8px * var(--local-scale));
+}
+
+.dropdown-content.active {
+    display: block;
+}
+
+.feature-item {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    padding: calc(8px * var(--local-scale));
+    color: #59c7ff;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2C6280;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.feature-item:hover {
+    background-color: rgba(89, 199, 255, 0.1);
+    color: #3AA0CC;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #1F4966;
+}
+
+/* Bans Page Styles */
+.coming-soon-overlay {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: "Minecraft";
+    font-size: calc(32px * var(--local-scale));
+    font-weight: bold;
+    color: #ff5555;
+    text-shadow:
+        calc(var(--local-scale) * 3px) calc(var(--local-scale) * 3px) 0 #000000,
+        0 0 calc(20px * var(--local-scale)) rgba(255, 85, 85, 0.5);
+    z-index: 10;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.ban-result {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    max-width: calc(600px * var(--local-scale));
+    margin: calc(20px * var(--local-scale)) auto;
+}
+
+.bans-list {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    min-height: calc(200px * var(--local-scale));
+}
+
+.bans-list-container {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: flex;
+    flex-direction: column;
+    gap: calc(12px * var(--local-scale));
+}
+
+.ban-item {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    background-color: rgba(0, 0, 0, 0.3);
+    border: calc(2px * var(--local-scale)) solid #555555;
+    padding: calc(12px * var(--local-scale));
+    border-radius: calc(4px * var(--local-scale));
+    transition: background-color 0.2s ease;
+}
+
+.ban-item:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ban-item.ban-active {
+    border-left: calc(4px * var(--local-scale)) solid #FF5555;
+}
+
+.ban-item.ban-expired {
+    border-left: calc(4px * var(--local-scale)) solid #555555;
+    opacity: 0.7;
+}
+
+.ban-header {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: flex;
+    align-items: center;
+    gap: calc(12px * var(--local-scale));
+    margin-bottom: calc(12px * var(--local-scale));
+}
+
+.ban-player-head {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    width: calc(32px * var(--local-scale));
+    height: calc(32px * var(--local-scale));
+    image-rendering: pixelated;
+    border: calc(2px * var(--local-scale)) solid #555555;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ban-player-info {
+    display: flex;
+    flex-direction: column;
+    gap: calc(4px * var(--local-scale));
+}
+
+.ban-player-name {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(9px * var(--local-scale));
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+}
+
+.ban-status {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(7px * var(--local-scale));
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.ban-status.ban-active {
+    color: #FF5555;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F1515;
+}
+
+.ban-status.ban-expired {
+    color: #555555;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A2A2A;
+}
+
+.ban-time-remaining {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #FFAA00;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F2A00;
+    font-weight: bold;
+}
+
+.ban-details {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    padding-top: calc(8px * var(--local-scale));
+    border-top: calc(1px * var(--local-scale)) solid #555555;
+}
+
+.ban-reason {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    color: #FFFFFF;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #3F3F3F;
+    margin: 0 0 calc(8px * var(--local-scale)) 0;
+    word-wrap: break-word;
+}
+
+.ban-meta {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(7px * var(--local-scale));
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A2A2A;
+    margin: 0;
+}
+
+.ban-meta span {
+    margin-right: calc(8px * var(--local-scale));
+}
+
+.ban-stats-grid {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(12px * var(--local-scale));
+}
+
+.info-message {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    font-family: "Minecraft";
+    font-size: calc(8px * var(--local-scale));
+    text-align: center;
+    padding: calc(16px * var(--local-scale));
+    color: #59c7ff;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2C6280;
+    background-color: rgba(89, 199, 255, 0.1);
+    border: calc(2px * var(--local-scale)) solid #59c7ff;
+}
+
+/* Uptime Counter */
+.uptime-counter {
+    --local-scale: calc(var(--scale, 1) * var(--global-scale));
+    position: fixed;
+    bottom: calc(16px * var(--local-scale));
+    right: calc(16px * var(--local-scale));
+    font-family: "Minecraft";
+    font-size: calc(7px * var(--local-scale));
+    color: #AAAAAA;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2A2A2A;
+    z-index: 1000;
+    cursor: default;
+}
+
+.uptime-text {
+    display: inline;
+}
+
+.uptime-hover-text {
+    display: none;
+}
+
+.uptime-counter:hover .uptime-text {
+    display: none;
+}
+
+.uptime-counter:hover .uptime-hover-text {
+    display: inline;
+}
+
+.uptime-counter:hover {
+    color: #59c7ff;
+    text-shadow: calc(var(--local-scale) * 1px) calc(var(--local-scale) * 1px) 0 #2C6280;
+}
+
+/* --- */

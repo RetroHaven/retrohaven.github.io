@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RetroHaven - Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon type" href="assets/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body class="dirtbg">
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="stats.html">Stats</a>
+    <a href="bans.html">Bans</a>
+    <a href="https://map.retrohaven.org" target="_blank">Map</a>
+    <a href="https://discord.retrohaven.org" target="_blank">Discord</a>
+</div>
+
+<h1 class="center">Server Stats</h1>
+
+<!-- Player Search Section -->
+<div class="player-search-container">
+    <form id="player-search-form" class="search-form">
+        <input type="text" id="player-search-input" placeholder="Search player stats..." class="search-input" required>
+        <button type="submit" class="search-button">Search</button>
+    </form>
+</div>
+
+<div class="stats-container">
+    <!-- Online Players Section -->
+    <div class="stats-section">
+        <h2 class="section-title">Online Players (<span id="online-count">0</span>)</h2>
+        <div id="online-players" class="player-list">
+            <p class="loading">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Playtime Leaderboard Section -->
+    <div class="stats-section">
+        <h2 class="section-title">Playtime Leaderboard</h2>
+        <div id="playtime-leaderboard" class="leaderboard">
+            <p class="loading">Loading...</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div class="copyright">2025 RetroHaven &#128008;</div>
+
+<!-- Load scripts in order: config first, then modules, then initialization -->
+<script src="assets/scripts/config.js"></script>
+<script src="assets/scripts/stats.js"></script>
+<script src="assets/scripts/onlineplayers.js"></script>
+<script>
+    // Initialize managers when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const statsManager = new StatsManager();
+        const onlinePlayersManager = new OnlinePlayersManager();
+
+        statsManager.init();
+        onlinePlayersManager.init();
+
+        // Handle player search
+        const searchForm = document.getElementById('player-search-form');
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const playerName = document.getElementById('player-search-input').value.trim();
+            if (playerName) {
+                window.location.href = `player.html?name=${encodeURIComponent(playerName)}`;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

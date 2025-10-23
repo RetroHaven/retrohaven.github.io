@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RetroHaven - Player Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon type" href="assets/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body class="dirtbg">
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="stats.html">Stats</a>
+    <a href="bans.html">Bans</a>
+    <a href="https://map.retrohaven.org" target="_blank">Map</a>
+    <a href="https://discord.retrohaven.org" target="_blank">Discord</a>
+</div>
+
+<h1 class="center">Player Stats</h1>
+
+<!-- Player Info Card -->
+<div class="player-card">
+    <div class="player-header">
+        <img id="player-head" src="" alt="Player Head" class="player-head">
+        <div class="player-info">
+            <h2 id="player-name" class="player-name-display">Loading...</h2>
+            <p id="player-uuid" class="player-uuid">UUID: Loading...</p>
+        </div>
+    </div>
+
+    <div class="player-stats-grid">
+        <div class="stat-item">
+            <span class="stat-label">Total Playtime</span>
+            <span id="stat-playtime" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">First Joined</span>
+            <span id="stat-firstjoin" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Last Seen</span>
+            <span id="stat-lastseen" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Status</span>
+            <span id="stat-status" class="stat-value">Loading...</span>
+        </div>
+    </div>
+
+    <div id="error-message" class="error-box" style="display: none;">
+        <p>Player not found or error loading data.</p>
+    </div>
+</div>
+
+<div class="center-text">
+    <a href="stats.html">Back to Stats</a>
+</div>
+
+<br>
+<br>
+<div class="copyright">2025 RetroHaven &#128008;</div>
+
+<!-- Load scripts -->
+<script src="assets/scripts/config.js"></script>
+<script src="assets/scripts/playerstats.js"></script>
+<script>
+    // Initialize player stats when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const playerStatsManager = new PlayerStatsManager();
+        playerStatsManager.init();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RetroHaven - Bans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon type" href="assets/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body class="dirtbg">
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="stats.html">Stats</a>
+    <a href="bans.html">Bans</a>
+    <a href="https://map.retrohaven.org" target="_blank">Map</a>
+    <a href="https://discord.retrohaven.org" target="_blank">Discord</a>
+</div>
+
+<h1 class="center">Server Bans</h1>
+
+<!-- Ban Search Section -->
+<div class="player-search-container">
+    <form id="ban-search-form" class="search-form">
+        <input type="text" id="ban-search-input" placeholder="Search for player bans..." class="search-input" required>
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <div id="ban-search-result" class="ban-result" style="display: none;"></div>
+</div>
+
+<div class="stats-container">
+    <!-- Recent Bans Section -->
+    <div class="stats-section" style="position: relative;">
+        <h2 class="section-title">Recent Bans</h2>
+        <div class="bans-list" style="position: relative; min-height: 200px;">
+            <div class="coming-soon-overlay">COMING SOON</div>
+        </div>
+    </div>
+
+    <!-- Ban Statistics Section -->
+    <div class="stats-section">
+        <h2 class="section-title">Ban Statistics</h2>
+        <div class="ban-stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Total Bans</span>
+                <span id="total-bans" class="stat-value">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div class="copyright">2025 RetroHaven &#128008;</div>
+
+<!-- Load scripts -->
+<script src="assets/scripts/config.js"></script>
+<script src="assets/scripts/bans.js"></script>
+<script>
+    // Initialize bans manager when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const bansManager = new BansManager();
+        bansManager.init();
+    });
+</script>
+
+</body>
+</html>

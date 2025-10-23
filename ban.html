@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RetroHaven - Ban Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon type" href="assets/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body class="dirtbg">
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="stats.html">Stats</a>
+    <a href="bans.html">Bans</a>
+    <a href="https://map.retrohaven.org" target="_blank">Map</a>
+    <a href="https://discord.retrohaven.org" target="_blank">Discord</a>
+</div>
+
+<h1 class="center">Ban Details</h1>
+
+<!-- Ban Info Card -->
+<div class="player-card">
+    <div class="player-header">
+        <img id="ban-player-head" src="" alt="Player Head" class="player-head">
+        <div class="player-info">
+            <h2 id="ban-player-name" class="player-name-display">Loading...</h2>
+            <p id="ban-status-display" class="ban-status-text">Status: Loading...</p>
+        </div>
+    </div>
+
+    <div class="player-stats-grid">
+        <div class="stat-item">
+            <span class="stat-label">Reason</span>
+            <span id="ban-reason" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Banned By</span>
+            <span id="ban-bannedby" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Ban Date</span>
+            <span id="ban-date" class="stat-value">Loading...</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Expires</span>
+            <span id="ban-expires" class="stat-value">Loading...</span>
+        </div>
+    </div>
+
+    <div id="error-message" class="error-box" style="display: none;">
+        <p>Ban not found or error loading data.</p>
+    </div>
+</div>
+
+<div class="center-text">
+    <a href="bans.html">Back to Bans</a>
+</div>
+
+<br>
+<br>
+<div class="copyright">2025 RetroHaven &#128008;</div>
+
+<!-- Load scripts -->
+<script src="assets/scripts/config.js"></script>
+<script src="assets/scripts/ban.js"></script>
+<script>
+    // Initialize ban details when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const banDetailsManager = new BanDetailsManager();
+        banDetailsManager.init();
+    });
+</script>
+
+</body>
+</html>
