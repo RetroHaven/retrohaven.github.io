@@ -58,7 +58,14 @@ class BanDetailsManager {
             console.log('Ban details data:', data);
 
             // Check if the response indicates no ban found
-            if (response.status === 404 || data.message === 'Player not banned' || data.error || !data.player) {
+            if (response.status === 404 ||
+                data.message === 'Player not banned' ||
+                data.message === 'No ban found' ||
+                data.error === 'Player not found' ||
+                data.error === 'No ban found' ||
+                data.banned === false ||
+                data.isBanned === false ||
+                !data.player) {
                 this.showError('No ban found for this player.');
                 return;
             }
@@ -71,6 +78,18 @@ class BanDetailsManager {
             let banData = data;
             if (data.ban) {
                 banData = data.ban;
+            }
+
+            // Additional check: if response is an empty object or missing critical data
+            if (!banData || typeof banData !== 'object') {
+                this.showError('No ban found for this player.');
+                return;
+            }
+
+            // Check if banData doesn't have essential ban fields, treat as not banned
+            if (!banData.reason && !banData.banned_at && !banData.created_at && !banData.timestamp) {
+                this.showError('No ban found for this player.');
+                return;
             }
 
             this.displayBanDetails(banData);
@@ -123,15 +142,16 @@ class BanDetailsManager {
         this.errorMessage.querySelector('p').textContent = message;
         this.errorMessage.style.display = 'block';
 
-        // Hide stats if there's an error
-        this.playerNameDisplay.textContent = this.playerName || 'Unknown';
-        this.banStatusDisplay.textContent = 'Status: Not Found';
-        this.playerHeadImg.style.display = 'none';
+        // Hide the entire player card when there's no ban
+        const playerCard = document.querySelector('.player-card');
+        const playerStatsGrid = document.querySelector('.player-stats-grid');
+        const playerHeader = document.querySelector('.player-header');
 
-        document.getElementById('ban-reason').textContent = 'N/A';
-        document.getElementById('ban-bannedby').textContent = 'N/A';
-        document.getElementById('ban-date').textContent = 'N/A';
-        document.getElementById('ban-expires').textContent = 'N/A';
+        if (playerStatsGrid) playerStatsGrid.style.display = 'none';
+        if (playerHeader) playerHeader.style.display = 'none';
+
+        // Show player name in error message for clarity
+        this.errorMessage.querySelector('p').textContent = `This player is not banned`;
     }
 }
 
